@@ -34,7 +34,6 @@ export function AuthProvider({ children }) {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async user => {
             setLoading(true)
-            console.log('User: ',user)
             try {
                 // Set the user to our local context state
                 setCurrentUser(user)

@@ -15,7 +15,8 @@ export default function Login() {
 
   const { signup, login } = useAuth()
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault()
       if (!email || !password || password.length < 6) {
           return
       }

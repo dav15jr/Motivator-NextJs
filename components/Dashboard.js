@@ -70,29 +70,28 @@ const statuses = {
       }
     }
 
-const moods = {
-  'Lazy':'🥱',
-  'Passive':'😒',
-  'Good':'😏',
-  'Better':'😁',
-  'Driven':'💪',
-  }
+  const moods = {
+    'Lazy':'🥱',
+    'Passive':'😒',
+    'Good':'😏',
+    'Better':'😁',
+    'Driven':'💪',
+    }
 
   useEffect(() => {
-    if (!currentUser || !userDataObj) {
-      return
-    }
-    setData(userDataObj)
-  }, [currentUser, userDataObj])
+      if (!currentUser || !userDataObj) {
+        return
+      }
+      setData(userDataObj)
+    }, [currentUser, userDataObj])
 
   if (loading) {
-    return <Loading />
-  }
+      return <Loading />
+    }
 
   if (!currentUser) {
-    return <Login />
-  }
-
+      return <Login />
+    }
 
   return (
     <div className='flex flex-col flex-1 gap-8 sm:gap-12 md:gap-16'>

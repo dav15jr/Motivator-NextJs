@@ -33,9 +33,10 @@ export function AuthProvider({ children }) {
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async user => {
+            setLoading(true)
+            console.log('User: ',user)
             try {
                 // Set the user to our local context state
-                setLoading(true)
                 setCurrentUser(user)
                 if (!user) {
                     console.log('No User Found')
@@ -46,14 +47,15 @@ export function AuthProvider({ children }) {
                 console.log('Fetching User Data')
                 const docRef = doc(db, 'users', user.uid)
                 const docSnap = await getDoc(docRef)
+                
                 let firebaseData = {}
                 if (docSnap.exists()) {
                     console.log('Found User Data')
                     firebaseData = docSnap.data()
+                    setUserDataObj(firebaseData)
                 }
-                setUserDataObj(firebaseData)
             } catch (err) {
-                console.log(err.message)
+                console.log('Error: ', err.message)
             } finally {
                 setLoading(false)
             }
